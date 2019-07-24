@@ -1,0 +1,5 @@
+WORKING_DIR = './垃圾分类/'
+QA_DATA = 'qadata.csv'
+QA_TEMPLATE = 'qa.yaml.template'
+SCRIPT_TEMPLATE = 'script.yaml.template'
+SCRIPT_OUTPUT = 'script.yaml'

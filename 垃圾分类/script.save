@@ -1,0 +1,24 @@
+player: 2C
+chapter: 1.X
+variables:
+    rounds: 7
+    totalrounds: 5
+    validrounds: 6
+    grams: 1000
+    score: 40
+    details: "❌LV包属于什么垃圾？答案是`可回收垃圾`\n\n✅白砂糖属于什么垃圾？答案是`湿垃圾`\n\n❌打火机属于什么垃圾？答案是`有害垃圾`\n\n❌樟脑丸属于什么垃圾？答案是`可回收垃圾`\n\n✅X光片属于什么垃圾？答案是`有害垃圾`\n\n"
+    used1: 1
+    lastone: ""
+    totalgrams: 10660
+inputs:
+    - 准备
+    - 准备
+    - ""
+    - ""
+    - ""
+    - A
+    - A
+    - b
+    - d
+    - c
+    - c
