@@ -1,0 +1,43 @@
+  "{序号}":
+    chapter: 哔哩哔哩入学考试
+    story: |-
+      @lastone> @sender，{题目}
+      > 
+      > 答题进度: `@validrounds`/@totalrounds
+
+      选项: 
+
+      A.  🎤  {A}
+
+      B.  💃  {B}
+
+      C.  🎵  {C}
+
+      D.  🏀  {D}
+    choices:
+      - keywords: [{正确选项}]
+        description: ""
+        action: [gotox, incr, calc, calc, calc, calc]
+        param:
+          [
+            "Math.round(Math.random() * ({n} - 1) + 1)",
+            "validrounds",
+            "details+='✅{题目}答案是`{正确答案}`\\n\\n'",
+            "score+(100/totalrounds)",
+            "grams+500",
+            "lastone=''",
+          ]
+      - keywords: [{错误选项}]
+        description: ""
+        action: [gotox, incr, calc, calc]
+        param:
+          [
+            "Math.round(Math.random() * ({n} - 1) + 1)",
+            "validrounds",
+            "details+='❌{题目}答案是`{正确答案}`\\n\\n'",
+            "lastone='上一题纠错: 应该是`{正确答案}`\\n\\n'",
+          ]
+      - keywords: [继续, 下一步, continue, next, jixu]
+        description: ""
+        action: gotox
+        param: "Math.round(Math.random() * ({n} - 1) + 1)"
