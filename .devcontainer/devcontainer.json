@@ -1,5 +1,5 @@
 {
-    "name": "Python: BotLab2",
+    "name": "Python: BotLab",
     "dockerFile": "Dockerfile",
     "context": "..",
     "extensions": [
