@@ -1,0 +1,14 @@
+{
+    "name": "Python: BotLab2",
+    "dockerFile": "Dockerfile",
+    "context": "..",
+    "extensions": [
+        "ms-python.python"
+    ],
+    "settings": {
+        "python.pythonPath": "/usr/local/bin/python",
+        "python.linting.pylintEnabled": true,
+        "python.linting.pylintPath": "/usr/local/bin/pylint",
+        "python.linting.enabled": true
+    }
+}
