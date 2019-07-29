@@ -18,25 +18,11 @@
       - keywords: [{正确选项}]
         description: ""
         action: [gotox, incr, calc, calc, calc, calc]
-        param:
-          [
-            "Math.round(Math.random() * ({n} - 1) + 1)",
-            "validrounds",
-            "details+='✅{题目}答案是`{正确答案}`\\n\\n'",
-            "score+(100/totalrounds)",
-            "grams+500",
-            "lastone=''",
-          ]
+        param: ["Math.round(Math.random() * ({n} - 1) + 1)","validrounds","details+='✅{题目}答案是`{正确答案}`\\n\\n'","score+(100/totalrounds)","grams+500","lastone=''"]
       - keywords: [{错误选项}]
         description: ""
         action: [gotox, incr, calc, calc]
-        param:
-          [
-            "Math.round(Math.random() * ({n} - 1) + 1)",
-            "validrounds",
-            "details+='❌{题目}答案是`{正确答案}`\\n\\n'",
-            "lastone='上一题纠错: 应该是`{正确答案}`\\n\\n'",
-          ]
+        param: ["Math.round(Math.random() * ({n} - 1) + 1)","validrounds","details+='❌{题目}答案是`{正确答案}`\\n\\n'","lastone='上一题纠错: 应该是`{正确答案}`\\n\\n'"]
       - keywords: [继续, 下一步, continue, next, jixu]
         description: ""
         action: gotox
