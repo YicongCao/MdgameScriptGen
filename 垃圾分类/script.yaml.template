@@ -1,32 +1,21 @@
 title: 垃圾分类大冒险
 variables:
-  [rounds, validrounds, totalrounds, grams, totalgrams, score, details, used1, lastone]
+  [rounds, validrounds, totalrounds, grams, totalgrams, score, details, used1, lastone, qaseq]
 constants:
   remark: 备注
 stages:
   "1.1":
     chapter: 规则讲解
     story: |-
-      > 欢迎来到`@title`，这是一个`文字冒险游戏`，你通过输入`动作`或`指令`来推进剧情、获取帮助。
-      > 
-      > 游戏规则是通过@bot，回复题目中的垃圾类型，完成挑战。整个挑战包括`5`道题，题库随机。
-      > 
-      > 除了回复垃圾类型外，你还可以回复`help、hint、reset`等指令，来获取帮助、提升和重置进度。
-      > 
-      > 群聊里的玩家可以`共同努力`💪，群策群力，取得好成绩💯
-      > 
-      > 那么，让我们开始吧～
-
-      @sender，请输入“准备”进入答题环节:
-      
-      **准备**
+      > 欢迎来到`@title`🐸！
+      > 游戏规则：通过 @Bot 回复题目中的垃圾类型，完成挑战。整个挑战包括 `5` 道题，题库随机。
+      @sender，请 @我，输入“开始”进入答题环节吧～
     choices:
-      - keywords: [准备, 继续, ready, zhunbei, zb, jixu, next, go]
+      - keywords: [开始, 准备, 继续, ready, zhunbei, zb, jixu, next, go]
         description: ""
-        action: [gotox, calc, calc, calc, calc, calc, calc, calc]
+        action: [calc, calc, calc, calc, calc, calc, calc, eval, eval, gotox]
         param:
           [
-            "Math.round(Math.random() * ({n} - 1) + 1)",
             "totalrounds?5:5",
             "validrounds?1:1",
             "grams?0:0",
@@ -34,49 +23,92 @@ stages:
             "details?'':''",
             "used1?0:0",
             "lastone?'':''",
+            "qaseq=Array.from(Array({n}).keys()); qaseq.splice(0,1);",
+            "qaseq.sort(function () { return 0.5 - Math.random(); });",
+            "qaseq[rounds%{n}]",
           ]
   "1.2":
     chapter: 交卷吗
     story: |-
       > 长路漫漫，犹可期许，是时候检验成果啦
-      > 
       > 你已经答完`@totalrounds`道小题，本群的小伙伴们，辛苦啦💦
-
       @sender，请输入“交卷”查看本群分数:
-
       **交卷**
     choices:
       - keywords: [交卷, 继续, jixu, next, go, commit, push, jiaojuan]
         description: ""
         action: goto
         param: 1.X
-  "1.X":
+  "1.A":
     chapter: 放榜啦
     story: |-
-      > 恭喜👏，本群的成绩是`@score`分
-      > 
-      > 本次答题共收集🚮垃圾`@grams`克
-      > 
-      > 目前大盘玩家🎮已收集垃圾共计`@totalgrams`克
-
-      结算明细:
-
+      > 太棒了🎉，所有题目都回答正确💯
+      > 希望你在现实生活也要做好垃圾分类喔💪
+      满分之路✍️:
       @details
 
-      @sender，请输入“重置”来继续学习吧🌝
+      @sender，请@我，输入“重置”来重新挑战吧🌝
+    choices: 
+      - keywords: []
+        description: ""
+        action: reset
+        param: ""
+  "1.B":
+    chapter: 放榜啦
+    story: |-
+      > 还不错😄，你的分数是`@score`分
+      > 再接再厉，争做垃圾分类小能手～
+      > 要不要挑战一次满分呢？💯
+      结算明细📜:
+      @details
 
-      **重置**
-    choices: {}
+      @sender，请@我，输入“重置”来重新挑战吧🌝
+    choices: 
+      - keywords: []
+        description: ""
+        action: reset
+        param: ""
+  "1.C":
+    chapter: 放榜啦
+    story: |-
+      > 很遗憾😑，你的分数是`@score`分
+      > 垃圾分类靠大家，还需要继续加油哦🚮
+      错题本儿📙:
+      @details
+
+      @sender，请@我，输入“重置”来重新挑战吧🌝
+    choices: 
+      - keywords: []
+        description: ""
+        action: reset
+        param: ""
 {quiz}
 dynamics:
   - conditions:
       chapter: "*"
-      expression: validrounds > totalrounds && used1 == 0
-    action: [goto, calc, incr]
+      expression: validrounds > totalrounds && used1 == 0 && score >= 99
+    action: [goto, incr]
     param:
       [
-        "1.X",
-        "totalgrams?totalgrams:Math.round(Math.log((Date.now()-1562138451000))*6666)",
+        "1.A",
+        "used1",
+      ]
+  - conditions:
+      chapter: "*"
+      expression: validrounds > totalrounds && used1 == 0 && score > 40 && score < 99
+    action: [goto, incr]
+    param:
+      [
+        "1.B",
+        "used1",
+      ]
+  - conditions:
+      chapter: "*"
+      expression: validrounds > totalrounds && used1 == 0 && score <= 40
+    action: [goto, incr]
+    param:
+      [
+        "1.C",
         "used1",
       ]
 defaults:
@@ -85,25 +117,11 @@ defaults:
       keywords: [help, man, 帮助, 怎么玩, 你是谁]
     action: none
     description: |-
-      > 欢迎来到`@title`，这是一个`文字冒险游戏`，你通过输入`动作`或`指令`来推进剧情、获取帮助。
+      > 欢迎来到`@title`！
       > 
-      > 游戏规则是通过@bot，回复题目中的垃圾类型，完成挑战。整个挑战包括`5`道题，题库随机。
+      > 游戏规则：通过 @Bot 回复题目中的垃圾类型，完成挑战。整个挑战包括 `5` 道题，题库随机。
       > 
-      > 除了回复垃圾类型外，你还可以回复`help、hint、reset`等指令，来获取帮助、提升和重置进度。
-      > 
-      > 群聊里的玩家可以`共同努力`💪，群策群力，取得好成绩💯
-
-      游戏基本操作如下: 
-
-      **继续游戏**: 直接@我即可
-      
-      **开始游戏**: start
-
-      **帮助**: help、man
-
-      **提示**: hint
-
-      **重置**: reset
+      @sender，请 @我，输入“开始”进入答题环节吧～
   - conditions:
       chapter: "*"
       keywords: [hint, 提示]
@@ -111,11 +129,11 @@ defaults:
     description: "@sender，本小题没有提示😂"
   - conditions:
       chapter: "*"
-      keywords: [reset, start, 重置, 开始, 重新开始, 开始游戏]
+      keywords: [reset, start, 重置, 重新开始, 重新]
     action: reset
     description: "重置章节"
   - conditions:
       chapter: "*"
       keywords: []
     action: none
-    description: "> 😯没听懂，请再说一遍，你是什么垃圾？"
+    description: "> 😯没听懂，可以@我，输入“帮助”获取提示：）"
