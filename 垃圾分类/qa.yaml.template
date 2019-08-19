@@ -5,11 +5,12 @@
       > 
       > 答题进度: `@validrounds`/@totalrounds
       选项: 
-      A.  📎  {A}
-      B.  🍉  {B}
-      C.  🔋  {C}
-      D.  ♻  {D}
-      @sender，请@bot，输入A/B/C/D作答吧！
+      [A.  📎  {A}](bot://replymsg?func=at&param=A)
+      [B.  🍉  {B}](bot://replymsg?func=at&param=B)
+      [C.  🔋  {C}](bot://replymsg?func=at&param=C)
+      [D.  ♻  {D}](bot://replymsg?func=at&param=D)
+
+      @sender，请点击选项作答吧！
     choices:
       - keywords: [{正确选项}]
         description: ""

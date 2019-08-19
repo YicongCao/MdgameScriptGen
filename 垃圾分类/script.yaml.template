@@ -9,7 +9,9 @@ stages:
     story: |-
       > 欢迎来到`@title`🐸！
       > 游戏规则：通过 @Bot 回复题目中的垃圾类型，完成挑战。整个挑战包括 `5` 道题，题库随机。
-      @sender，请 @我，输入“开始”进入答题环节吧～
+      @sender，请点击“开始” 进入答题环节吧～
+
+      [开始](bot://replymsg?func=at&param=%e5%bc%80%e5%a7%8b)
     choices:
       - keywords: [开始, 准备, 继续, ready, zhunbei, zb, jixu, next, go]
         description: ""
@@ -32,8 +34,9 @@ stages:
     story: |-
       > 长路漫漫，犹可期许，是时候检验成果啦
       > 你已经答完`@totalrounds`道小题，本群的小伙伴们，辛苦啦💦
-      @sender，请输入“交卷”查看本群分数:
-      **交卷**
+      @sender，请点击“交卷”查看本群分数:
+
+      [交卷](bot://replymsg?func=at&param=%e4%ba%a4%e5%8d%b7)
     choices:
       - keywords: [交卷, 继续, jixu, next, go, commit, push, jiaojuan]
         description: ""
@@ -47,7 +50,9 @@ stages:
       满分之路✍️:
       @details
 
-      @sender，请@我，输入“重置”来重新挑战吧🌝
+      @sender，请点击“重置”来重新挑战吧🌝
+
+      [重置](bot://replymsg?func=at&param=%e9%87%8d%e7%bd%ae)
     choices: 
       - keywords: []
         description: ""
@@ -62,7 +67,9 @@ stages:
       结算明细📜:
       @details
 
-      @sender，请@我，输入“重置”来重新挑战吧🌝
+      @sender，请点击“重置”来重新挑战吧🌝
+
+      [重置](bot://replymsg?func=at&param=%e9%87%8d%e7%bd%ae)
     choices: 
       - keywords: []
         description: ""
@@ -76,7 +83,9 @@ stages:
       错题本儿📙:
       @details
 
-      @sender，请@我，输入“重置”来重新挑战吧🌝
+      @sender，请点击“重置”来重新挑战吧🌝
+
+      [重置](bot://replymsg?func=at&param=%e9%87%8d%e7%bd%ae)
     choices: 
       - keywords: []
         description: ""
