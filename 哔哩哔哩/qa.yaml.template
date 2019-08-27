@@ -1,19 +1,14 @@
   "{序号}":
-    chapter: 哔哩哔哩入学考试
+    chapter: 00后入学考试
     story: |-
       @lastone> @sender，{题目}
       > 
       > 答题进度: `@validrounds`/@totalrounds
-
       选项: 
-
-      A.  🎤  {A}
-
-      B.  💃  {B}
-
-      C.  🎵  {C}
-
-      D.  🏀  {D}
+      [A.  🎤  {A}](bot://replymsg?func=at&param=A)
+      [B.  💃  {B}](bot://replymsg?func=at&param=B)
+      [C.  🎵  {C}](bot://replymsg?func=at&param=C)
+      [D.  🏀  {D}](bot://replymsg?func=at&param=D)
     choices:
       - keywords: [{正确选项}]
         description: ""

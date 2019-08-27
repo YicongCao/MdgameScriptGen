@@ -12,6 +12,16 @@
 
       @sender，请点击选项作答吧！
     choices:
+      - keywords: [{错误选项}]
+        description: ""
+        action: [gotox, incr, calc, calc]
+        param:
+          [
+            "qaseq[rounds%{n}]",
+            "validrounds",
+            "details+='❌{题目}答案是`{正确答案}`\\n\\n'",
+            "lastone='上一题纠错🙅: 应该是`{正确答案}`\\n\\n'",
+          ]
       - keywords: [{正确选项}]
         description: ""
         action: [gotox, incr, calc, calc, calc, calc]
@@ -23,16 +33,6 @@
             "score+(100/totalrounds)",
             "grams+500",
             "lastone='上一题`回答正确`✅\\n\\n'",
-          ]
-      - keywords: [{错误选项}]
-        description: ""
-        action: [gotox, incr, calc, calc]
-        param:
-          [
-            "qaseq[rounds%{n}]",
-            "validrounds",
-            "details+='❌{题目}答案是`{正确答案}`\\n\\n'",
-            "lastone='上一题纠错🙅: 应该是`{正确答案}`\\n\\n'",
           ]
       - keywords: [继续, 下一步, continue, next, jixu]
         description: ""
